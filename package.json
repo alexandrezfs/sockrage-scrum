@@ -1,0 +1,24 @@
+{
+  "name": "sockrage-scrum",
+  "version": "1.0.0",
+  "description": "sockrage-scrum ==============",
+  "main": "app.js",
+  "dependencies": {
+    "html": "^0.0.7",
+    "express": "^4.9.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexzhxin/sockrage-scrum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexzhxin/sockrage-scrum/issues"
+  },
+  "homepage": "https://github.com/alexzhxin/sockrage-scrum"
+}
