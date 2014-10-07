@@ -9,22 +9,45 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
         $scope.scrumItems = sync.$asArray(); //assign sync array in a scope property
 
-        //test
-        $scope.scrumItems.$set({
-            task_description : "blabla",
-            owner : "author",
-            time_estimate : 999,
-            time_reported : 888,
-            state : "checkout"
-        });
+        $scope.scrumItem = {};
 
-        
+        $scope.addScrumItem = function(scrumItem) {
 
-        /*
-        $scope.messages.$set({message : "hello world !"}); //add data to synchronized array
-        $scope.messages.$delete("someID"); //delete data to synchronized array
-        $scope.messages.$update("someID", {message : "I updated this data !"}); //delete data to synchronized array
-        */
+            if($scope.createScrumItemForm.$valid){
+
+                $scope.scrumItems.$set({
+                    task_description : scrumItem.task_description,
+                    owner : scrumItem.owner,
+                    time_estimate : scrumItem.time_estimate,
+                    time_reported : new Date().getTime(),
+                    state : "To do"
+                });
+
+                $scope.scrumItem = {};
+
+            }
+
+        }
+
+        $scope.updateScrumItem = function(scrumItem) {
+
+            $scope.scrumItems.$update(scrumItem._id, {
+                task_description : scrumItem.task_description,
+                owner : scrumItem.owner,
+                time_estimate : scrumItem.time_estimate,
+                time_reported : scrumItem.time_reported,
+                state : scrumItem.state
+            });
+
+            $scope.scrumItem = {};
+
+        }
+
+        $scope.deleteScrumItem = function(scrumItem_id) {
+
+            $scope.scrumItems.$delete(scrumItem_id);
+
+        }
 
     }]
 );
