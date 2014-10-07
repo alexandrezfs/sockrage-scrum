@@ -1,0 +1,25 @@
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Task</td>
+        <td>Owner</td>
+        <td>Time Estimate</td>
+        <td>Time Reported</td>
+        <td>States</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng:repeat="item in scrumItems">
+        <td>{{ item._id }}</td>
+        <td>{{ item.task_description }}</td>
+        <td>{{ item.owner }}</td>
+        <td>{{ item.time_estimate }}</td>
+        <td>{{ item.time_reported }}</td>
+        <td>{{ item.state }}</td>
+    </tr>
+    </tbody>
+
+</table>
