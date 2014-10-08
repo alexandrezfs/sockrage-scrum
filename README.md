@@ -16,7 +16,7 @@ https://github.com/ultrasupernew/sockrage
 ##Installation
     git clone https://github.com/alexzhxin/sockrage-scrum && cd sockrage-scrum
     sudo npm install
-    cd public && sudo bower install
+    cd public && bower install
     
 ##Configuration
 The configuration file is located in public/js/config.js.
