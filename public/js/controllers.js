@@ -66,16 +66,8 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
         $scope.deleteScrumItem = function (scrumItem_id) {
 
-            smoke.confirm("Are you sure?", function (e) {
-                if (e) {
-                    $scope.scrumItems.$delete(scrumItem_id);
-                } else {
-
-                }
-            }, {
-                ok: "Yep",
-                cancel: "Nope",
-                reverseButtons: true
+            bootbox.confirm("Are you sure you want to delete this item ?", function(result) {
+                $scope.scrumItems.$delete(scrumItem_id);
             });
 
         }
