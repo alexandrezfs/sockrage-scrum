@@ -11,7 +11,7 @@
         <input type="text" placeholder="Owner" class="form-control" ng-model="scrumItem.owner" required>
     </div>
     <div class="form-group">
-        <input type="number" placeholder="Time Estimate" class="form-control" ng-model="scrumItem.time_estimate" required>
+        <input type="number" placeholder="Time Estimate (H)" class="form-control" ng-model="scrumItem.time_estimate" required>
     </div>
     <div class="form-group">
         <button ng-click="addScrumItem(scrumItem)" class="btn btn-primary margin-top-1">Create</button>
@@ -29,7 +29,7 @@
         <td>ID</td>
         <td>Task</td>
         <td>Owner</td>
-        <td>Time Estimate</td>
+        <td>Time Estimate (H)</td>
         <td>Time Reported</td>
         <td>State</td>
         <td>Options</td>
@@ -37,7 +37,7 @@
     </thead>
 
     <tbody>
-    <tr ng:repeat="item in scrumItems">
+    <tr ng:repeat="item in scrumItems | reverse">
         <td>{{ item._id }}</td>
         <td>{{ item.task_description }}</td>
         <td>{{ item.owner }}</td>
@@ -79,7 +79,7 @@
                         <input type="text" id="ownerUpdate" placeholder="Owner" class="form-control" ng-model="scrumItemToUpdate.owner" required>
                     </div>
                     <div class="form-group">
-                        <label for="timeEstimateUpdate">Time Estimate</label>
+                        <label for="timeEstimateUpdate">Time Estimate (H)</label>
                         <input type="number" id="timeEstimateUpdate" placeholder="Time Estimate" class="form-control" ng-model="scrumItemToUpdate.time_estimate" required>
                     </div>
                     <div class="form-group">
