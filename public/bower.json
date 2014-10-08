@@ -1,0 +1,26 @@
+{
+  "name": "sockrage-scrum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/alexzhxin/sockrage-scrum",
+  "authors": [
+    "NGUYEN Alexandre <alex.nr@hotmail.fr>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.26",
+    "angular-resource": "~1.2.26",
+    "angular-route": "~1.2.26",
+    "jquery": "~2.1.1",
+    "smoke.js": "*",
+    "moment": "~2.8.3",
+    "sockrage": "*",
+    "toastr": "~2.0.3"
+  }
+}
