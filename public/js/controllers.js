@@ -3,7 +3,7 @@ var sockRageControllers = angular.module('ScrumControllers', ['sockRage']);
 sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr',
     function ($scope, $AngularSockr) {
 
-        var ref = new SockRage("http://localhost:3000", "scrum-data"); //Create a reference
+        var ref = new SockRage(appConfig.sockrage_addr, appConfig.scrum_item_collection); //Create a reference
 
         var sync = $AngularSockr(ref); //create a $SockRageAngular instance
 
