@@ -32,6 +32,7 @@
         <td>Time Estimate</td>
         <td>Time Reported</td>
         <td>States</td>
+        <td>Options</td>
     </tr>
     </thead>
 
@@ -40,10 +41,57 @@
         <td>{{ item._id }}</td>
         <td>{{ item.task_description }}</td>
         <td>{{ item.owner }}</td>
-        <td>{{ item.time_estimate }}</td>
-        <td>{{ item.time_reported }}</td>
+        <td>{{ item.time_estimate}}</td>
+        <td>{{ item.time_reported | date:'medium'}}</td>
         <td>{{ item.state }}</td>
+        <td>
+            <button ng-click="openUpdateModalWindow(item)" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdateScrumItem">Update</button>
+            <button ng-click="deleteScrumItem(item._id)" class="btn btn-danger">Remove</button>
+        </td>
     </tr>
     </tbody>
 
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="modalUpdateScrumItem" tabindex="-1" role="dialog" aria-labelledby="modalUpdateScrumItemLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="modalUpdateScrumItemLabel"></h4>
+            </div>
+            <div class="modal-body" id="update-scrum-modal">
+                <form role="form" name="updateScrumItemForm" novalidate>
+                    <div class="form-group">
+                        <label for="taskDescriptionUpdate">Description</label>
+                        <input type="text" id="taskDescriptionUpdate" placeholder="Description" class="form-control" ng-model="scrumItemToUpdate.task_description"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerUpdate">Owner</label>
+                        <input type="text" id="ownerUpdate" placeholder="Owner" class="form-control" ng-model="scrumItemToUpdate.owner" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeEstimateUpdate">Time Estimate</label>
+                        <input type="number" id="timeEstimateUpdate" placeholder="Time Estimate" class="form-control" ng-model="scrumItemToUpdate.time_estimate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stateUpdate">State</label>
+                        <select id="stateUpdate" ng-model="scrumItemToUpdate.state" class="form-control">
+                            <option>To do</option>
+                            <option>Checkout</option>
+                            <option>Done</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button ng-click="updateScrumItem(scrumItemToUpdate)" class="btn btn-primary margin-top-1">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

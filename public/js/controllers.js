@@ -10,42 +10,73 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
         $scope.scrumItems = sync.$asArray(); //assign sync array in a scope property
 
         $scope.scrumItem = {};
+        $scope.scrumItemToUpdate = {};
 
-        $scope.addScrumItem = function(scrumItem) {
+        $scope.addScrumItem = function (scrumItem) {
 
-            if($scope.createScrumItemForm.$valid){
+            if ($scope.createScrumItemForm.$valid) {
 
                 $scope.scrumItems.$set({
-                    task_description : scrumItem.task_description,
-                    owner : scrumItem.owner,
-                    time_estimate : scrumItem.time_estimate,
-                    time_reported : new Date().getTime(),
-                    state : "To do"
+                    task_description: scrumItem.task_description,
+                    owner: scrumItem.owner,
+                    time_estimate: scrumItem.time_estimate,
+                    time_reported: new Date().getTime(),
+                    state: "To do"
                 });
 
                 $scope.scrumItem = {};
 
             }
+            else {
+                toastr.error("Invalid form. Please check your fields");
+            }
 
         }
 
-        $scope.updateScrumItem = function(scrumItem) {
+        $scope.updateScrumItem = function (scrumItem) {
 
-            $scope.scrumItems.$update(scrumItem._id, {
-                task_description : scrumItem.task_description,
-                owner : scrumItem.owner,
-                time_estimate : scrumItem.time_estimate,
-                time_reported : scrumItem.time_reported,
-                state : scrumItem.state
+            if ($scope.updateScrumItemForm.$valid) {
+
+                    $scope.scrumItems.$update(scrumItem._id, {
+                    task_description: scrumItem.task_description,
+                    owner: scrumItem.owner,
+                    time_estimate: scrumItem.time_estimate,
+                    time_reported: scrumItem.time_reported,
+                    state: scrumItem.state
+                });
+
+                $scope.scrumItemToUpdate = {};
+
+                $('#modalUpdateScrumItem').modal('hide');
+
+                toastr.success("Item " + scrumItem._id + " successfully updated !");
+            }
+            else {
+                toastr.error("Invalid form. Please check your fields");
+            }
+
+        }
+
+        $scope.openUpdateModalWindow = function (scrumItem) {
+
+            $("#modalUpdateScrumItemLabel").html("Update task " + scrumItem._id);
+
+            $scope.scrumItemToUpdate = angular.copy(scrumItem);
+        }
+
+        $scope.deleteScrumItem = function (scrumItem_id) {
+
+            smoke.confirm("Are you sure?", function (e) {
+                if (e) {
+                    $scope.scrumItems.$delete(scrumItem_id);
+                } else {
+
+                }
+            }, {
+                ok: "Yep",
+                cancel: "Nope",
+                reverseButtons: true
             });
-
-            $scope.scrumItem = {};
-
-        }
-
-        $scope.deleteScrumItem = function(scrumItem_id) {
-
-            $scope.scrumItems.$delete(scrumItem_id);
 
         }
 
