@@ -21,6 +21,7 @@
     "moment": "~2.8.3",
     "sockrage": "*",
     "toastr": "~2.0.3",
-    "bootbox": "~4.3.0"
+    "bootbox": "~4.3.0",
+    "ng-grid": "~2.0.13"
   }
 }
