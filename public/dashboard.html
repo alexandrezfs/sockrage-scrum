@@ -22,38 +22,7 @@
     <h1>List</h1>
 </div>
 
-<table class="table table-striped" ng-if="scrumItems.length > 0">
-
-    <thead>
-    <tr>
-        <td>ID</td>
-        <td>Task</td>
-        <td>Owner</td>
-        <td>Time Estimate (H)</td>
-        <td>Time Reported</td>
-        <td>State</td>
-        <td>Options</td>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr ng:repeat="item in scrumItems | reverse">
-        <td>{{ item._id }}</td>
-        <td>{{ item.task_description }}</td>
-        <td>{{ item.owner }}</td>
-        <td>{{ item.time_estimate }}</td>
-        <td>{{ item.time_reported | date:'medium'}}</td>
-        <td>
-            <span ng-class="{'To do' : 'label label-primary', 'Checkout' : 'label label-primary', 'To do' : 'label label-danger', 'Done' : 'label label-success'}[item.state]">{{ item.state }}</span>
-        </td>
-        <td>
-            <button ng-click="openUpdateModalWindow(item)" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdateScrumItem">Update</button>
-            <button ng-click="deleteScrumItem(item._id)" class="btn btn-danger">Remove</button>
-        </td>
-    </tr>
-    </tbody>
-
-</table>
+<div ng-grid="gridScrumItemsOptions" class="gridStyles"></div>
 
 <div ng-if="scrumItems.length == 0">
     <p class="lead">No scrum item to show</p>

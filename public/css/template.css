@@ -37,3 +37,16 @@ body > .container {
 code {
     font-size: 80%;
 }
+
+.gridStyles {
+    height: 400px;
+}
+
+.small-select-box {
+    height: 25px;
+}
+
+.btn-options-container {
+    padding-left: 10px;
+    padding-top: 2px;
+}
