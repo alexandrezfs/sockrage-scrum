@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bdf2a81-fb5b-48bc-9967-3ffc31b69172" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/dashboard.html" afterPath="$PROJECT_DIR$/public/dashboard.html" />
-    </list>
+    <list default="true" id="0bdf2a81-fb5b-48bc-9967-3ffc31b69172" name="Default" comment="" />
     <ignored path="sockrage-scrum.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="-6.923077" vertical-offset="570" max-vertical-offset="1980">
+            <state line="86" column="30" selection-start="4115" selection-end="4130" vertical-scroll-proportion="1.6908213" vertical-offset="240" max-vertical-offset="1980">
               <folding />
             </state>
           </provider>
@@ -70,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="0.5896226" vertical-offset="0" max-vertical-offset="1275">
+            <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="-11.875" vertical-offset="90" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -727,16 +725,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/public/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="-6.923077" vertical-offset="570" max-vertical-offset="1980">
+        <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="-11.875" vertical-offset="90" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="0.5896226" vertical-offset="0" max-vertical-offset="1275">
+        <state line="86" column="30" selection-start="4115" selection-end="4130" vertical-scroll-proportion="1.6908213" vertical-offset="240" max-vertical-offset="1980">
           <folding />
         </state>
       </provider>
