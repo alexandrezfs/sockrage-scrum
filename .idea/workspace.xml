@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bdf2a81-fb5b-48bc-9967-3ffc31b69172" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers.js" afterPath="$PROJECT_DIR$/public/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/dashboard.html" afterPath="$PROJECT_DIR$/public/dashboard.html" />
     </list>
     <ignored path="sockrage-scrum.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.28985506" vertical-offset="570" max-vertical-offset="1980">
+            <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="-6.923077" vertical-offset="570" max-vertical-offset="1980">
               <folding />
             </state>
           </provider>
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="dashboard.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="28" selection-start="510" selection-end="510" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="1275">
+            <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="0.5896226" vertical-offset="0" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -138,8 +138,8 @@
         <option value="$PROJECT_DIR$/public/bower_components/ng-grid/ng-grid-2.0.13.debug.js" />
         <option value="$PROJECT_DIR$/public/css/template.css" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
-        <option value="$PROJECT_DIR$/public/dashboard.html" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
+        <option value="$PROJECT_DIR$/public/dashboard.html" />
       </list>
     </option>
   </component>
@@ -727,16 +727,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="28" selection-start="510" selection-end="510" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="1275">
+        <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="-6.923077" vertical-offset="570" max-vertical-offset="1980">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/public/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="77" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.28985506" vertical-offset="570" max-vertical-offset="1980">
+        <state line="25" column="82" selection-start="922" selection-end="922" vertical-scroll-proportion="0.5896226" vertical-offset="0" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>

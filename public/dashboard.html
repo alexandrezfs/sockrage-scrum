@@ -23,7 +23,7 @@
     <h1>List</h1>
 </div>
 
-<div ng-grid="gridScrumItemsOptions" class="gridStyles"></div>
+<div ng-grid="gridScrumItemsOptions" class="gridStyles" ng-if="scrumItems.length > 0"></div>
 
 <div ng-if="scrumItems.length == 0">
     <p class="lead">No scrum item to show</p>
