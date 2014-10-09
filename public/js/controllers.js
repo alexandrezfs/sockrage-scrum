@@ -11,7 +11,7 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
         $scope.states = ["To do", "Checkout", "Done"];
         $scope.hours = [];
-        for(var i = 1; i < 501; i++) {
+        for (var i = 1; i < 501; i++) {
             $scope.hours.push(i);
         }
         $scope.cellSelectEditableTemplateState = '<select class="form-control small-select-box" ng-model="scrumItems[row.rowIndex].state" ng-change=\"updateScrumItemInline(scrumItems[row.rowIndex])\"><option ng-repeat="state in states">{{ state }}</option></select>';
@@ -24,11 +24,11 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
             enableColumnReordering: false,
             columnDefs: [
                 {field: '_id', displayName: 'ID', enableCellEdit: false, sortable: false},
-                {field:'task_description', displayName:'Task', enableCellEdit: true, sortable: false},
-                {field:'owner', displayName:'Owner', enableCellEdit: true, sortable: false},
-                {field:'time_estimate', displayName:'Time estimate', enableCellEdit: false, cellTemplate: $scope.cellSelectEditableTemplateTimeEstimate, sortable: false},
-                {field:'time_reported', displayName:'Time reported', enableCellEdit: false, cellFilter: "date:'medium'", sortable: false},
-                {field:'state', displayName:'State', enableCellEdit: true, cellTemplate: $scope.cellSelectEditableTemplateState, enableCellEdit: false, sortable: false},
+                {field: 'task_description', displayName: 'Task', enableCellEdit: true, sortable: false},
+                {field: 'owner', displayName: 'Owner', enableCellEdit: true, sortable: false},
+                {field: 'time_estimate', displayName: 'Time estimate', enableCellEdit: false, cellTemplate: $scope.cellSelectEditableTemplateTimeEstimate, sortable: false},
+                {field: 'time_reported', displayName: 'Time reported', enableCellEdit: false, cellFilter: "date:'medium'", sortable: false},
+                {field: 'state', displayName: 'State', enableCellEdit: true, cellTemplate: $scope.cellSelectEditableTemplateState, enableCellEdit: false, sortable: false},
                 {displayName: 'Options', cellTemplate: $scope.optionsTemplate, sortable: false}
             ]
         };
@@ -36,7 +36,7 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
         $scope.scrumItem = {};
         $scope.scrumItemToUpdate = {};
 
-        $scope.$on('ngGridEventEndCellEdit', function(evt){
+        $scope.$on('ngGridEventEndCellEdit', function (evt) {
 
             var entity = evt.targetScope.row.entity;
 
@@ -47,15 +47,21 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
             if ($scope.createScrumItemForm.$valid) {
 
-                $scope.scrumItems.$set({
-                    task_description: scrumItem.task_description,
-                    owner: scrumItem.owner,
-                    time_estimate: scrumItem.time_estimate,
-                    time_reported: new Date().getTime(),
-                    state: "To do"
-                });
+                if (scrumItem.time_estimate > 500 || scrumItem.time_estimate < 1) {
+                    toastr.error("Estimate time should be < 500H and > 0H");
+                }
+                else {
 
-                $scope.scrumItem = {};
+                    $scope.scrumItems.$set({
+                        task_description: scrumItem.task_description,
+                        owner: scrumItem.owner,
+                        time_estimate: scrumItem.time_estimate,
+                        time_reported: new Date().getTime(),
+                        state: "To do"
+                    });
+
+                    $scope.scrumItem = {};
+                }
 
             }
             else {
@@ -82,7 +88,7 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
             if ($scope.updateScrumItemForm.$valid) {
 
-                    $scope.scrumItems.$update(scrumItem._id, {
+                $scope.scrumItems.$update(scrumItem._id, {
                     task_description: scrumItem.task_description,
                     owner: scrumItem.owner,
                     time_estimate: scrumItem.time_estimate,
@@ -111,7 +117,7 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
         $scope.deleteScrumItem = function (scrumItem_id) {
 
-            bootbox.confirm("Are you sure you want to delete this item ?", function(result) {
+            bootbox.confirm("Are you sure you want to delete this item ?", function (result) {
                 $scope.scrumItems.$delete(scrumItem_id);
             });
 

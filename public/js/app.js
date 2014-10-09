@@ -10,12 +10,12 @@ var Scrum = angular.module('Scrum', [
     'ScrumFilters'
 ]);
 
-Scrum.run(function($rootScope, $location) {
+Scrum.run(function ($rootScope, $location) {
     $rootScope.location = $location;
 });
 
 Scrum.config(['$routeProvider',
-    function($routeProvider) {
+    function ($routeProvider) {
         $routeProvider.
             when('/', {
                 templateUrl: 'dashboard.html',
