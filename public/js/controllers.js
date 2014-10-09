@@ -48,7 +48,7 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
             if ($scope.createScrumItemForm.$valid) {
 
                 if (scrumItem.time_estimate > 500 || scrumItem.time_estimate < 1) {
-                    toastr.error("Estimate time should be < 500H and > 0H");
+                    toastr.error("Estimate time should be between 1H and 500H");
                 }
                 else {
 
