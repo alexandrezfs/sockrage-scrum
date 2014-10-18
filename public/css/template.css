@@ -39,14 +39,10 @@ code {
 }
 
 .gridStyles {
-    height: 400px;
+    height: 500px;
+    margin-bottom: 30px;
 }
 
 .small-select-box {
-    height: 25px;
-}
-
-.btn-options-container {
-    padding-left: 10px;
-    padding-top: 2px;
+    height: 30px;
 }
