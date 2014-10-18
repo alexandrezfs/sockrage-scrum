@@ -66,8 +66,6 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
                 var itemCache = scrumItemsCache[i];
                 $scope.scrumItems[itemCache.order_id] = itemCache;
-
-                console.log("assign = " + itemCache.order_id + " to " + itemCache.task_description);
             }
 
         });
@@ -85,8 +83,6 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
 
             if($scope.globals.justDeleted) {
 
-                console.log("del");
-
                 $scope.updateItemKeys();
 
                 $scope.globals.justDeleted = false;
@@ -95,8 +91,6 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
         });
 
         $scope.updateItemKeys = function() {
-
-            console.log($scope.gridScrumItemsOptions.ngGrid);
 
             for(var i = 0; i < $scope.gridScrumItemsOptions.ngGrid.data.length; i++) {
 
@@ -108,12 +102,8 @@ sockRageControllers.controller('dashboardController', ['$scope', '$AngularSockr'
                 delete item['_id'];
                 item.order_id = i;
 
-                console.log("update " + item.task_description + " to " + i);
-
                 $scope.scrumItems.$update(id, item);
             }
-
-            //console.log($scope.scrumItems);
 
         }
 
