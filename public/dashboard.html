@@ -2,7 +2,32 @@
     <h1>Tasks</h1>
 </div>
 
-<div ng-grid="gridScrumItemsOptions" class="gridStyles" ng-if="scrumItems.length > 0" ng-keyup="keyupOnTable($event)"></div>
+<div>
+
+    <table class="table table-striped" style="width:auto;">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Task</th>
+            <th>Owner</th>
+            <th>Time estimate</th>
+            <th>Time reported</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody ui-sortable ng-model="scrumItems">
+        <tr ng-repeat="item in scrumItems" class="item">
+            <td>{{ $index }}</td>
+            <td>{{ item.task }}</td>
+            <td>{{ item.owner }}</td>
+            <td>{{ item.time_estimate }}</td>
+            <td>{{ item.time_reported }}</td>
+            <td>{{ item.state }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 <div ng-show="scrumItems.length == 0">
 

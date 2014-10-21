@@ -7,7 +7,9 @@ var Scrum = angular.module('Scrum', [
     'ngRoute',
     'ScrumControllers',
     'ScrumServices',
-    'ScrumFilters'
+    'ScrumFilters',
+    'ui.bootstrap',
+    'ui.sortable'
 ]);
 
 Scrum.run(function ($rootScope, $location) {
