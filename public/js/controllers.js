@@ -13,23 +13,7 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
         $scope.scrumItems = [];
 
-        ref.on('getAll', function (data) {
-
-            console.log(data)
-            console.log("---");
-
-            $scope.scrumItems = [];
-
-            for(var i = 0; i < data.length; i++) {
-                var item = data[i];
-                $scope.scrumItems[item.order_index] = item;
-            }
-
-            $scope.$apply();
-
-        });
-
-        $interval(function() {
+        $interval(function () {
 
             if ($scope.scrumItems.length == 0
                 || $scope.scrumItems[$scope.scrumItems.length - 1].task_description != "") {
@@ -41,14 +25,27 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
         }, 500);
 
-        ref.on("create", function(data) {
+        ref.on('getAll', function (data) {
+
+            $scope.scrumItems = [];
+
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                $scope.scrumItems[item.order_index] = item;
+            }
+
+            $scope.$apply();
+
+        });
+
+        ref.on("create", function (data) {
 
             $scope.scrumItems.push(data);
             $scope.$apply();
 
             //if the pushed data was not an anonymous data...
 
-            if(data.task_description && data.task_description.length != ""
+            if (data.task_description && data.task_description.length != ""
                 && $scope.scrumItems[$scope.scrumItems.length - 1].task_description.length > 0) {
 
                 console.log("add as create");
@@ -57,7 +54,7 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
             }
         });
 
-        ref.on("update", function(data) {
+        ref.on("update", function (data) {
 
             console.log("update");
 
@@ -78,7 +75,36 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
         }
 
-        $scope.updateScrumItem = function(item) {
+        $scope.sortableOptions = {
+            stop: function (e, ui) {
+                /*
+                 var item = ui.item.scope().item;
+                 var fromIndex = ui.item.sortable.index;
+                 var toIndex = ui.item.sortable.dropindex;
+                 */
+
+                console.log($scope.scrumItems);
+
+                //updating new array key ==> order_index key
+                for (var i = 0; i < $scope.scrumItems.length; i++) {
+                    var item = $scope.scrumItems[i];
+                    item.order_index = i;
+                }
+
+                //and then, when it's done, send it to the remote.
+                for (var i = 0; i < $scope.scrumItems.length; i++) {
+
+                    var item = $scope.scrumItems[i];
+
+                    var _id = item._id;
+                    delete item['_id'];
+
+                    ref.update(_id, item);
+                }
+            }
+        };
+
+        $scope.updateScrumItem = function (item) {
 
             var _id = item._id;
             delete item['_id'];
