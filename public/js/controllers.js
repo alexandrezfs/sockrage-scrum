@@ -18,8 +18,6 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
             if ($scope.scrumItems.length == 0
                 || $scope.scrumItems[$scope.scrumItems.length - 1].task_description != "") {
 
-                console.log("passed.");
-
                 $scope.addAnonymousItemIfNotExists();
             }
 
@@ -41,6 +39,7 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
         ref.on("create", function (data) {
 
             $scope.scrumItems.push(data);
+
             $scope.$apply();
 
             //if the pushed data was not an anonymous data...
@@ -48,17 +47,28 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
             if (data.task_description && data.task_description.length != ""
                 && $scope.scrumItems[$scope.scrumItems.length - 1].task_description.length > 0) {
 
-                console.log("add as create");
-
                 $scope.addAnonymousItemIfNotExists();
             }
         });
 
         ref.on("update", function (data) {
 
-            console.log("update");
+            //updating the key
+            $scope.scrumItems[data.data.order_index] = data.data;
 
-            ref.list();
+            $scope.$apply();
+
+        });
+
+        ref.on("delete", function(data) {
+
+            //everyone has to remove it from their index.
+            $scope.scrumItems.splice(data.data.order_index, 1);
+            updateOrderIndexLocal();
+
+            //the remote arrays has to be updated with new indexes
+
+            updateArrayRemote();
 
         });
 
@@ -83,33 +93,49 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                  var toIndex = ui.item.sortable.dropindex;
                  */
 
-                console.log($scope.scrumItems);
-
                 //updating new array key ==> order_index key
-                for (var i = 0; i < $scope.scrumItems.length; i++) {
-                    var item = $scope.scrumItems[i];
-                    item.order_index = i;
-                }
+                updateOrderIndexLocal();
 
                 //and then, when it's done, send it to the remote.
-                for (var i = 0; i < $scope.scrumItems.length; i++) {
-
-                    var item = $scope.scrumItems[i];
-
-                    var _id = item._id;
-                    delete item['_id'];
-
-                    ref.update(_id, item);
-                }
+                updateArrayRemote();
             }
         };
 
         $scope.updateScrumItem = function (item) {
 
-            var _id = item._id;
-            delete item['_id'];
+            ref.update(item._id, item);
+        }
 
-            ref.update(_id, item);
+        $scope.removeScrumItem = function(event, item) {
+
+            if(event.keyCode == 8) {
+
+                var _id = item._id;
+
+                //remote update
+                ref.delete(_id);
+
+            }
+
+        }
+
+        function updateOrderIndexLocal() {
+
+            //updating new array key ==> order_index key
+            for (var i = 0; i < $scope.scrumItems.length; i++) {
+                var item = $scope.scrumItems[i];
+                item.order_index = i;
+            }
+        }
+
+        function updateArrayRemote() {
+
+            for (var i = 0; i < $scope.scrumItems.length; i++) {
+
+                var item = $scope.scrumItems[i];
+
+                ref.update(item._id, item);
+            }
         }
 
         ref.list();
