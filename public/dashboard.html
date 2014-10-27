@@ -4,7 +4,7 @@
 
 <div>
 
-    <table class="table table-striped" style="width:auto;">
+    <table class="table" style="width:auto;">
         <thead>
         <tr>
             <th>#</th>
@@ -15,23 +15,33 @@
             <th>State</th>
         </tr>
         </thead>
-        <tbody class="sortable" ui-sortable="sortableOptions" ng-model="scrumItems">
-        <tr ng-repeat="item in scrumItems | orderBy:'order_index' track by $index">
+        <tbody class="sortable crossed" ui-sortable="sortableOptions" ng-model="scrumItems">
+        <tr ng-repeat="item in scrumItems | orderBy:'order_index' track by $index" ng-click="setSelectedRow(item._id)"
+            ng-class="{selectedRow: item._id === selectedId}">
             <td>{{ $index }}</td>
             <td>
-                <input type="text" placeholder="Task" class="form-control" ng-model="item.task_description" ng-keyup="removeScrumItem($event, item)" ng-blur="updateScrumItem(item)">
+                <input type="text" placeholder="Add Task here" id="input-description-{{$index}}" class="form-control" ng-focus="setSelectedRow(item._id)"
+                       ng-model="item.task_description" ng-keyup="removeScrumItem($event, item)"
+                       ng-keydown="navigateRow($event, $index)" ng-blur="updateScrumItem(item)">
             </td>
             <td>
-                <input type="text" placeholder="Owner" class="form-control" ng-model="item.owner" ng-blur="updateScrumItem(item)">
+                <input type="text" placeholder="Owner" id="input-owner-{{$index}}" class="form-control" ng-focus="setSelectedRow(item._id)"
+                       ng-model="item.owner" ng-keydown="navigateRow($event, $index)" ng-blur="updateScrumItem(item)">
             </td>
             <td>
-                <select class="form-control" ng-model="item.time_estimate" ng-options="hour for hour in hours" ng-change="updateScrumItem(item)"></select>
+                <select class="form-control" ng-model="item.time_estimate" ng-focus="setSelectedRow(item._id)"
+                        ng-options="hour for hour in hours" ng-keydown="navigateRow($event, $index)"
+                        ng-change="updateScrumItem(item)"></select>
             </td>
             <td>
-                <select class="form-control" ng-model="item.time_reported" ng-options="hour for hour in hours" ng-change="updateScrumItem(item)"></select>
+                <select class="form-control" ng-model="item.time_reported" ng-focus="setSelectedRow(item._id)"
+                        ng-options="hour for hour in hours" ng-keydown="navigateRow($event, $index)"
+                        ng-change="updateScrumItem(item)"></select>
             </td>
             <td>
-                <select class="form-control" ng-model="item.state" ng-options="state for state in states" ng-change="updateScrumItem(item)"></select>
+                <select class="form-control" ng-model="item.state" ng-focus="setSelectedRow(item._id)"
+                        ng-options="state for state in states" ng-keydown="navigateRow($event, $index)"
+                        ng-change="updateScrumItem(item)"></select>
             </td>
         </tr>
         </tbody>

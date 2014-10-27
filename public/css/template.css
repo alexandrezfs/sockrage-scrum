@@ -46,3 +46,11 @@ code {
 .small-select-box {
     height: 30px;
 }
+
+.crossed {
+    cursor: move;
+}
+
+.selectedRow {
+    background-color: lightgoldenrodyellow;
+}
