@@ -12,6 +12,7 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
             }
 
             $scope.scrumItems = [];
+            $scope.bufferredItem;
 
             $interval(function () {
 
@@ -21,11 +22,65 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                     $scope.addAnonymousItemIfNotExists();
                 }
 
+                buildGraph();
+
             }, 500);
 
             $scope.setSelectedRow = function (selectedId) {
                 $scope.selectedId = selectedId;
+
+                buildGraph();
             };
+
+            function buildGraph() {
+
+                var selectedItem = null;
+
+                for (var i = 0; i < $scope.scrumItems.length; i++) {
+                    if($scope.selectedId == $scope.scrumItems[i]._id) {
+                        selectedItem = $scope.scrumItems[i];
+                    }
+                }
+
+                if(selectedItem) {
+
+                    jQuery('#time-chart').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Time spent'
+                        },
+                        xAxis: {
+                            categories: ['Time']
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Hours (H)'
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                pointPadding: 0.2,
+                                borderWidth: 0,
+                                animation: false
+                            }
+                        },
+                        series: [{
+                            name: 'Time reported',
+                            data: [selectedItem.time_reported]
+
+                        }, {
+                            name: 'Time estimate',
+                            data: [selectedItem.time_estimate]
+
+                        }]
+                    });
+
+                }
+
+            }
 
             ref.on('getAll', function (data) {
 
@@ -45,12 +100,6 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                 $scope.scrumItems.push(data);
                 $scope.$apply();
 
-                //if the pushed data was not an anonymous data...
-                if (data.task_description && data.task_description.length != ""
-                    && $scope.scrumItems[$scope.scrumItems.length - 1].task_description.length > 0) {
-
-                    $scope.addAnonymousItemIfNotExists();
-                }
             });
 
             ref.on("update", function (data) {
@@ -85,11 +134,6 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
             $scope.sortableOptions = {
                 stop: function (e, ui) {
-                    /*
-                     var item = ui.item.scope().item;
-                     var fromIndex = ui.item.sortable.index;
-                     var toIndex = ui.item.sortable.dropindex;
-                     */
 
                     //updating new array key ==> order_index key
                     updateOrderIndexLocal();
@@ -106,8 +150,9 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
             $scope.removeScrumItem = function (event, item) {
 
-                if (event.keyCode == 8) {
+                if (event.keyCode == 8 && item.task_description.length == 0) {
                     ref.delete(item._id);
+                    $("#alert-undo").show("fast");
                 }
             }
 
@@ -121,6 +166,29 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                     index++;
                     $("#input-description-" + index).focus();
                 }
+
+            }
+
+            $scope.undoDelete = function(event) {
+
+                event.preventDefault();
+
+                var item = $scope.bufferredItem;
+
+                //select the last item
+                var itemToUpdate = $scope.scrumItems[$scope.scrumItems.length - 1];
+
+                //set the new order id
+                item.order_index = itemToUpdate.order_index;
+
+                ref.update(itemToUpdate._id, item);
+
+                $("#alert-undo").hide("fast");
+            }
+
+            $scope.bufferItem = function(item) {
+
+                $scope.bufferredItem = angular.copy(item);
 
             }
 
@@ -138,7 +206,6 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                 for (var i = 0; i < $scope.scrumItems.length; i++) {
 
                     var item = $scope.scrumItems[i];
-
                     ref.update(item._id, item);
                 }
             }

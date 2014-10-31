@@ -54,3 +54,11 @@ code {
 .selectedRow {
     background-color: lightgoldenrodyellow;
 }
+
+.scrumItemsTable {
+    width: auto;
+}
+
+#alert-undo {
+    display: none;
+}
