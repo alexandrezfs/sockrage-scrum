@@ -22,8 +22,6 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                     $scope.addAnonymousItemIfNotExists();
                 }
 
-                buildGraph();
-
             }, 500);
 
             $scope.setSelectedRow = function (selectedId) {
@@ -93,12 +91,16 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
                 $scope.$apply();
 
+                buildGraph();
+
             });
 
             ref.on("create", function (data) {
 
                 $scope.scrumItems.push(data);
                 $scope.$apply();
+
+                buildGraph();
 
             });
 
@@ -107,6 +109,8 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
                 //updating the key
                 $scope.scrumItems[data.data.order_index] = data.data;
                 $scope.$apply();
+
+                buildGraph();
             });
 
             ref.on("delete", function (data) {
@@ -117,6 +121,8 @@ scrumControllers.controller('dashboardController', ['$scope', '$timeout', '$inte
 
                 //the remote arrays has to be updated with new indexes
                 updateArrayRemote();
+
+                buildGraph();
             });
 
             $scope.addAnonymousItemIfNotExists = function () {
